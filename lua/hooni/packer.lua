@@ -51,4 +51,17 @@ return require('packer').startup(function(use)
     "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
   }
+  use('JoosepAlviste/nvim-ts-context-commentstring')
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup(
+        {
+          pre_hook = require('ts_context_commentstring.integrations.comment_nvim')
+              .create_pre_hook(),
+        })
+    end
+  }
+  use("lukas-reineke/indent-blankline.nvim")
+  use('windwp/nvim-ts-autotag')
 end)
